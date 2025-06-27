@@ -51,6 +51,13 @@ export const useFipeForm = () => {
   const [selectedModel, setSelectedModel] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
 
+  const resetForm = () => {
+    setVehicleType('cars')
+    setSelectedBrand('')
+    setSelectedModel('')
+    setSelectedYear('')
+  }
+
   const { data: brands, isLoading: loadingBrands } = useBrands(vehicleType)
 
   const { data: models, isLoading: loadingModels } = useModels(
@@ -103,6 +110,7 @@ export const useFipeForm = () => {
     models,
     years,
     fipeDetails,
+    resetForm,
     isLoading,
     handleVehicleChange,
     handleBrandChange,

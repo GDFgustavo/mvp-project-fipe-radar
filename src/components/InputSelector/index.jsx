@@ -39,8 +39,15 @@ const InputSelector = ({
 
   return (
     <>
-      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ padding: '20px' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            maxWidth: '600px'
+          }}
+        >
           <SelectCustom
             value={vehicleOptions.find((opcao) => opcao.value === vehicleType)}
             onChange={handleVehicleChange}
