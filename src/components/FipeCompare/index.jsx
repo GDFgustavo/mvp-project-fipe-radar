@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import InputSelector from '../InputSelector'
 import FipeResult from '../FipeResult'
+// import FipeResultPdf from '../FipeResultPdf'
 import { useFipeForm } from '../../Features/Fipe/useFipe'
+
+const FipeResultPdf = lazy(() => import('../FipeResultPdf'))
 
 const FipeCompare = () => {
   const [showCompare, setShowCompare] = useState(false)
@@ -27,6 +30,9 @@ const FipeCompare = () => {
         {!showCompare && fipeForm1.fipeDetails && (
           <>
             <FipeResult {...fipeForm1.fipeDetails} />
+            <Suspense>
+              <FipeResultPdf vehicles={[fipeForm1.fipeDetails]} />
+            </Suspense>
           </>
         )}
 
@@ -36,12 +42,18 @@ const FipeCompare = () => {
               <FipeResult {...fipeForm1.fipeDetails} />
               <FipeResult {...fipeForm2.fipeDetails} />
             </div>
+
+            <Suspense>
+              <FipeResultPdf
+                vehicles={[fipeForm1.fipeDetails, fipeForm2.fipeDetails]}
+              />
+            </Suspense>
           </>
         )}
       </div>
 
       <button onClick={toggleCompare}>
-        {showCompare ? 'Remover comparação' : 'Comparar outro veículo'}
+        {showCompare ? 'Remover comparação' : 'Adicionar comparação'}
       </button>
     </div>
   )
