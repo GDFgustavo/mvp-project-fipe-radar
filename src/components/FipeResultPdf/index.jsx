@@ -136,7 +136,7 @@ const FipeResultPdf = ({ vehicles }) => {
                 cursor: 'pointer'
               }}
             >
-              {loading ? 'Gerando PDF...' : 'Baixar Relatório (PDF)'}
+              {loading ? 'Gerando PDF...' : 'Baixar PDF'}
             </button>
           </>
         )}

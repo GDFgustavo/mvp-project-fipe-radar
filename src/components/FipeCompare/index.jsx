@@ -1,8 +1,8 @@
 import { lazy, Suspense, useState } from 'react'
 import InputSelector from '../InputSelector'
 import FipeResult from '../FipeResult'
-// import FipeResultPdf from '../FipeResultPdf'
 import { useFipeForm } from '../../Features/Fipe/useFipe'
+import FipeResultImage from '../FipeResultImage'
 
 const FipeResultPdf = lazy(() => import('../FipeResultPdf'))
 
@@ -33,6 +33,7 @@ const FipeCompare = () => {
             <Suspense>
               <FipeResultPdf vehicles={[fipeForm1.fipeDetails]} />
             </Suspense>
+            <FipeResultImage vehicles={[fipeForm1.fipeDetails]} />
           </>
         )}
 
@@ -48,6 +49,9 @@ const FipeCompare = () => {
                 vehicles={[fipeForm1.fipeDetails, fipeForm2.fipeDetails]}
               />
             </Suspense>
+            <FipeResultImage
+              vehicles={[fipeForm1.fipeDetails, fipeForm2.fipeDetails]}
+            />
           </>
         )}
       </div>
