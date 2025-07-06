@@ -1,0 +1,33 @@
+.navbarContainer {
+  padding: 8px;
+  border-radius: 16px;
+  margin: 0 48px;
+
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  color: #000;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 16px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
