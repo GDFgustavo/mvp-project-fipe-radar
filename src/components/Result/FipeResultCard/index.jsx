@@ -1,4 +1,3 @@
-import { Element } from 'react-scroll'
 import styles from './Styles.module.scss'
 
 const FipeResultCard = ({

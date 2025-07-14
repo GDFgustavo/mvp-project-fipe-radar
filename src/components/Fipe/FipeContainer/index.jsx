@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useFipeForm } from '../../../Features/Fipe/useFipe'
-import FipeCompareView from '../FipeCompareView'
+import FipeView from '../FipeView'
 
-const FipeCompareContainer = () => {
+const FipeContainer = () => {
   const [showCompare, setShowCompare] = useState(false)
 
   const fipeForm1 = useFipeForm()
@@ -17,7 +17,7 @@ const FipeCompareContainer = () => {
   }
 
   return (
-    <FipeCompareView
+    <FipeView
       showCompare={showCompare}
       toggleCompare={toggleCompare}
       fipeForm1={fipeForm1}
@@ -27,4 +27,4 @@ const FipeCompareContainer = () => {
   )
 }
 
-export default FipeCompareContainer
+export default FipeContainer

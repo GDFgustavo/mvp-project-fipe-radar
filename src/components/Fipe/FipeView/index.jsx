@@ -1,15 +1,14 @@
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import InputSelector from '../../Form/InputSelector'
 import FipeResultCard from '../../Result/FipeResultCard'
-import FipeResultPdf from '../../Result/FipeResultPdf'
-import FipeResultImage from '../../Result/FipeResultImage'
 import styles from './Styles.module.scss'
-import CustomButton from '../../Buttons/CustomButton'
-import { Element, Link } from 'react-scroll'
-import { AddIcon, InfoIcon, RemoveIcon } from '../../SvgIcons'
+import { Element } from 'react-scroll'
+import { InfoIcon } from '../../SvgIcons'
 import Spinner from '../../Spinner'
+import FipeCompare from '../FipeCompare'
+import FipeDownload from '../FipeDownload'
 
-const FipeCompareView = ({
+const FipeView = ({
   showCompare,
   toggleCompare,
   fipeForm1,
@@ -28,10 +27,17 @@ const FipeCompareView = ({
     fipeForm1.selectedModel === fipeForm2.selectedModel &&
     fipeForm1.selectedYear === fipeForm2.selectedYear
 
+  const showResults = (result1 || result2) && !isFormEqual
+
   const consult = () => {
     fipeForm1.handleSubmit()
+
     if (showCompare) {
-      fipeForm2.handleSubmit()
+      if (isFilled(fipeForm2)) {
+        fipeForm2.handleSubmit()
+      } else {
+        toggleCompare()
+      }
     }
   }
 
@@ -56,24 +62,11 @@ const FipeCompareView = ({
           <h3>Consulta Tabela FIPE</h3>
           <InputSelector {...fipeForm1} />
           {showCompare && <InputSelector {...fipeForm2} />}
-
-          <div className={styles.btn}>
-            {showCompare ? (
-              <CustomButton size="medium" onClick={toggleCompare}>
-                <RemoveIcon />
-                Remover comparação
-              </CustomButton>
-            ) : (
-              <CustomButton size="medium" onClick={toggleCompare}>
-                <AddIcon /> Adicionar comparação
-              </CustomButton>
-            )}
-            <Link to="result" smooth={true} duration={500}>
-              <CustomButton size="medium" onClick={consult}>
-                Consultar
-              </CustomButton>
-            </Link>
-          </div>
+          <FipeCompare
+            onConsult={consult}
+            showCompare={showCompare}
+            toggleCompare={toggleCompare}
+          />
         </div>
       </Element>
 
@@ -89,31 +82,15 @@ const FipeCompareView = ({
             <Spinner />
           </div>
         ) : (
-          (result1 || result2) &&
-          !isFormEqual && (
+          showResults && (
             <>
-              <div className={styles.actionButtons}>
-                <h3>Resultado FIPE</h3>
-                <div>
-                  {result1 && (
-                    <>
-                      <Suspense>
-                        <FipeResultPdf vehicles={[fipeForm1.fipeDetails]} />
-                      </Suspense>
-                      <FipeResultImage vehicles={[fipeForm1.fipeDetails]} />
-                    </>
-                  )}
-                  {result2 && (
-                    <>
-                      <Suspense>
-                        <FipeResultPdf vehicles={[fipeForm1.fipeDetails]} />
-                      </Suspense>
-                      <FipeResultImage vehicles={[fipeForm1.fipeDetails]} />
-                    </>
-                  )}
-                </div>
-              </div>
-
+              <FipeDownload
+                vehicles={
+                  result2
+                    ? [fipeForm1.fipeDetails, fipeForm2.fipeDetails]
+                    : [fipeForm1.fipeDetails]
+                }
+              />
               <div
                 className={
                   !showCompare && fipeForm1.fipeDetails
@@ -137,4 +114,4 @@ const FipeCompareView = ({
   )
 }
 
-export default FipeCompareView
+export default FipeView

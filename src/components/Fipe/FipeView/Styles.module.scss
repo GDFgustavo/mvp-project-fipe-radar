@@ -1,6 +1,5 @@
 .inputContainer {
   margin-top: 10em;
-  margin-bottom: 8em;
 
   .tooltip {
     text-align: center;
@@ -23,7 +22,7 @@
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     padding: 32px;
-    margin-bottom: 48px;
+    margin-bottom: 4em;
     position: relative;
 
     h3 {
@@ -39,11 +38,6 @@
     }
   }
 
-  .btn {
-    display: flex;
-    justify-content: space-between;
-  }
-
   .gridResult {
     display: grid;
     grid-template-columns: 2fr 2fr;
@@ -55,24 +49,6 @@
   grid-template-columns: minmax(600px, 700px);
   justify-content: center;
 }
-
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-
-    div {
-      gap: 1rem;
-      display: flex;
-    }
-
-    h3 {
-      font-size: 24px;
-    }
-  }
 
   .spinnerContainer {
     display: flex;
