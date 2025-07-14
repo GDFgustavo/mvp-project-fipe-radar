@@ -1,5 +1,6 @@
 import styles from './Styles.module.scss'
-import CustomButton from '../CustomButton'
+import CustomButton from '../Buttons/CustomButton'
+import { Link } from 'react-scroll'
 
 const Banner = () => {
   return (
@@ -13,7 +14,9 @@ const Banner = () => {
           Consulte e compare preços de veículos com a tabela FIPE mais
           atualizada do mercado
         </p>
-        <CustomButton size="medium">Consultar</CustomButton>
+        <Link to="consult" smooth={true} offset={-80} duration={500}>
+          <CustomButton size="medium">Consultar</CustomButton>
+        </Link>
       </div>
     </div>
   )

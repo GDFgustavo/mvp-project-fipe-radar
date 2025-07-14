@@ -1,0 +1,30 @@
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 24px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 8px;
+  background-color: #0049e6;
+  color: #fff;
+
+  &.small {
+    font-size: 14px;
+    width: 12em;
+  }
+
+  &.medium {
+    font-size: 16px;
+    width: 16em;
+  }
+
+  &.large {
+    font-size: 18px;
+    width: 24em;
+  }
+}
+
+

@@ -1,4 +1,3 @@
-// useFipeForm.ts
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
@@ -34,14 +33,29 @@ const useYears = (vehicleType, brandCode, modelCode) => {
   })
 }
 
-const useFipeDetails = (vehicleType, brandCode, modelCode, yearCode) => {
+const useFipeDetails = (
+  vehicleType,
+  brandCode,
+  modelCode,
+  yearCode,
+  shouldFetch
+) => {
   return useQuery({
-    queryKey: ['details', vehicleType, brandCode, modelCode, yearCode],
+    queryKey: [
+      'details',
+      vehicleType,
+      brandCode,
+      modelCode,
+      yearCode,
+      shouldFetch
+    ],
     queryFn: () =>
       fetchFipeData(
         `${vehicleType}/brands/${brandCode}/models/${modelCode}/years/${yearCode}`
       ),
-    enabled: !!vehicleType && !!brandCode && !!modelCode && !!yearCode
+    enabled: shouldFetch,
+    staleTime: 0,
+    cacheTime: 0
   })
 }
 
@@ -50,56 +64,63 @@ export const useFipeForm = () => {
   const [selectedBrand, setSelectedBrand] = useState('')
   const [selectedModel, setSelectedModel] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
+  const [shouldFetch, setShouldFetch] = useState(false)
 
   const resetForm = () => {
     setVehicleType('cars')
     setSelectedBrand('')
     setSelectedModel('')
     setSelectedYear('')
+    setShouldFetch(false)
   }
 
-  const { data: brands, isLoading: loadingBrands } = useBrands(vehicleType)
+  const { data: brands } = useBrands(vehicleType)
 
-  const { data: models, isLoading: loadingModels } = useModels(
-    vehicleType,
-    selectedBrand
-  )
+  const { data: models } = useModels(vehicleType, selectedBrand)
 
-  const { data: years, isLoading: loadingYears } = useYears(
-    vehicleType,
-    selectedBrand,
-    selectedModel
-  )
+  const { data: years } = useYears(vehicleType, selectedBrand, selectedModel)
 
   const { data: fipeDetails, isLoading: loadingDetails } = useFipeDetails(
     vehicleType,
     selectedBrand,
     selectedModel,
-    selectedYear
+    selectedYear,
+    shouldFetch
   )
 
-  const isLoading =
-    loadingBrands || loadingModels || loadingYears || loadingDetails
+  const isLoading = loadingDetails
 
   const handleVehicleChange = (e) => {
     setVehicleType(e.value)
     setSelectedBrand('')
     setSelectedModel('')
     setSelectedYear('')
+    setShouldFetch(false)
   }
 
   const handleBrandChange = (e) => {
     setSelectedBrand(e.value)
     setSelectedModel('')
     setSelectedYear('')
+    setShouldFetch(false)
   }
 
   const handleModelChange = (e) => {
     setSelectedModel(e.value)
     setSelectedYear('')
+    setShouldFetch(false)
   }
 
-  const handleYearChange = (e) => setSelectedYear(e.value)
+  const handleYearChange = (e) => {
+    setSelectedYear(e.value)
+    setShouldFetch(false)
+  }
+
+  const handleSubmit = () => {
+    if (selectedBrand && selectedModel && selectedYear) {
+      setShouldFetch(true)
+    }
+  }
 
   return {
     vehicleType,
@@ -110,8 +131,9 @@ export const useFipeForm = () => {
     models,
     years,
     fipeDetails,
-    resetForm,
     isLoading,
+    resetForm,
+    handleSubmit,
     handleVehicleChange,
     handleBrandChange,
     handleModelChange,

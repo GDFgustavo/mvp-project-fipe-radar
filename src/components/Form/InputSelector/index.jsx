@@ -1,4 +1,5 @@
 import SelectCustom from '../SelectCustom'
+import styles from './Styles.module.scss'
 
 const InputSelector = ({
   vehicleType,
@@ -14,9 +15,9 @@ const InputSelector = ({
   handleYearChange
 }) => {
   const vehicleOptions = [
-    { label: 'Carros', value: 'cars' },
+    { label: 'Carros e utilitários pequenos', value: 'cars' },
     { label: 'Motos', value: 'motorcycles' },
-    { label: 'Caminhões', value: 'trucks' }
+    { label: 'Caminhões e micro-ônibus', value: 'trucks' }
   ]
 
   const mapToOptions = (data) =>
@@ -38,16 +39,10 @@ const InputSelector = ({
     yearOptions.find((opcao) => opcao.value === selectedYear) || null
 
   return (
-    <>
-      <div style={{ padding: '20px' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            maxWidth: '600px'
-          }}
-        >
+    <div className={styles.inputContainer}>
+      <div className={styles.inputGrid}>
+        <div className={styles.formGroup}>
+          <label htmlFor="typeCar">Tipo de Veículo</label>
           <SelectCustom
             value={vehicleOptions.find((opcao) => opcao.value === vehicleType)}
             onChange={handleVehicleChange}
@@ -55,22 +50,31 @@ const InputSelector = ({
             placeholder="Selecione o tipo do veículo"
             isSearchable={false}
           />
+        </div>
 
+        <div className={styles.formGroup}>
+          <label htmlFor="brand">Marca</label>
           <SelectCustom
             value={selectedBrandOption}
             onChange={handleBrandChange}
             options={brandOptions}
-            placeholder="Selecione uma marca"
+            placeholder="Selecione a marca"
           />
+        </div>
 
+        <div className={styles.formGroup}>
+          <label htmlFor="model">Modelo</label>
           <SelectCustom
             value={selectedModelOption}
             onChange={handleModelChange}
             options={modelOptions}
-            placeholder="Selecione um modelo"
+            placeholder="Selecione o modelo"
             isDisabled={!selectedBrand}
           />
+        </div>
 
+        <div className={styles.formGroup}>
+          <label htmlFor="year">Ano</label>
           <SelectCustom
             value={selectedYearOption}
             onChange={handleYearChange}
@@ -80,7 +84,7 @@ const InputSelector = ({
           />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

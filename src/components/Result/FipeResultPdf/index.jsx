@@ -8,8 +8,10 @@ import {
   Image
 } from '@react-pdf/renderer'
 import { styles } from './styles'
+import CustomButton from '../../Buttons/CustomButton'
 
-import fipeLogo from '../../assets/fipe-logo-black.png'
+import fipeLogo from '../../../assets/fipe-logo-black.png'
+import { PdfIcon } from '../../SvgIcons'
 Font.register({
   family: 'Open Sans',
   fonts: [
@@ -123,23 +125,14 @@ const FipeResultPdf = ({ vehicles }) => {
           </Document>
         }
         fileName={`fiperadar_consulta.pdf`}
+        style={{
+          textDecoration: 'none'
+        }}
       >
-        {({ loading }) => (
-          <>
-            <button
-              style={{
-                backgroundColor: '#3498db',
-                color: '#fff',
-                padding: '10px 15px',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer'
-              }}
-            >
-              {loading ? 'Gerando PDF...' : 'Baixar PDF'}
-            </button>
-          </>
-        )}
+        <CustomButton size="medium">
+          <PdfIcon />
+          Baixar PDF
+        </CustomButton>
       </PDFDownloadLink>
     </div>
   )

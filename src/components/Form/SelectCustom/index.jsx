@@ -9,21 +9,22 @@ const SelectCustom = ({
   isSearchable = true
 }) => {
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       width: '100%',
-      backgroundColor: state.isFocused ? '#f8f9fa' : '#fff',
+      backgroundColor: '#fff',
       border: '1px solid #e0e0e0',
-      borderRadius: '12px',
+      borderRadius: '8px',
       padding: '8px 12px',
       cursor: 'pointer',
       fontSize: '14px',
       fontWeight: 'bold',
-      boxShadow: state.isFocused ? '0 0 0 2px #000' : 'none',
+      boxShadow: 'none',
+      outline: 'none',
       transition: 'all 0.3s ease',
       '&:hover': {
-        borderColor: '#000000',
-        boxShadow: '0 0 0 1px #000'
+        border: '1px solid #000',
+        boxShadow: 'none'
       }
     }),
     singleValue: (provided) => ({
@@ -39,7 +40,7 @@ const SelectCustom = ({
     menu: (provided) => ({
       ...provided,
       marginTop: '8px',
-      borderRadius: '12px',
+      borderRadius: '8px',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
       overflow: 'hidden',
       zIndex: 9999,

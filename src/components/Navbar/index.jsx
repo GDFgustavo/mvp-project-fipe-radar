@@ -1,7 +1,7 @@
 import logo from '../../assets/fipe-logo-black.png'
-import ThemeButton from '../ThemeButton'
+import ThemeButton from '../Buttons/ThemeButton'
 import styles from './Styles.module.scss'
-import CustomButton from '../CustomButton'
+import CustomButton from '../Buttons/CustomButton'
 
 const Navbar = () => {
   return (
@@ -13,7 +13,7 @@ const Navbar = () => {
             <h1>Fipe Radar</h1>
           </li>
           <li>
-            <CustomButton size="medium">Entre em contato</CustomButton>
+            <CustomButton size="small">Entre em contato</CustomButton>
             <ThemeButton />
           </li>
         </ul>
