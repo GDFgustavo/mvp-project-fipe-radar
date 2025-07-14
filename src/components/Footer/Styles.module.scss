@@ -1,0 +1,32 @@
+.footerContainer {
+  margin-top: 10em;
+  padding: 8px 60px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 400;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    div {
+      gap: 2em;
+      display: flex;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    a {
+      color: #000;
+    }
+
+    img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
