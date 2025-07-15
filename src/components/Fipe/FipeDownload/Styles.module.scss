@@ -7,11 +7,21 @@
     flex-wrap: wrap;
 
     .actionItems {
-      gap: 1rem;
       display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     h3 {
       font-size: 24px;
+    }
+
+    @media (max-width: 768px) {
+        justify-content: center;
+
+      .actionItems {
+        justify-content: center;
+        gap: 8px;
+      }
     }
   }

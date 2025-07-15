@@ -1,4 +1,17 @@
   .btn {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+
+  @media (max-width: 768px) {
+    .btn {
+      gap: 8px;
+    }
+
+    .reactScrollLink {
+      display: block;
+      width: 100%;
+    }
   }

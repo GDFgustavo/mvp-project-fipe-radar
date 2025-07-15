@@ -2,6 +2,7 @@ import logo from '../../assets/fipe-logo-black.png'
 import ThemeButton from '../Buttons/ThemeButton'
 import styles from './Styles.module.scss'
 import CustomButton from '../Buttons/CustomButton'
+import { Link } from 'react-scroll'
 
 const Navbar = () => {
   return (
@@ -13,7 +14,9 @@ const Navbar = () => {
             <h1>Fipe Radar</h1>
           </li>
           <li>
-            <CustomButton size="small">Entre em contato</CustomButton>
+            <Link to="contact" smooth={true} duration={500}>
+              <CustomButton size="small">Entre em contato</CustomButton>
+            </Link>
             <ThemeButton />
           </li>
         </ul>

@@ -1,15 +1,79 @@
 .inputContainer {
   margin-top: 10em;
+    position: relative;
 
   .tooltip {
-    text-align: center;
+    position: absolute;
+    top: -250px;
+    max-width: 380px;
     background-color: #fff;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
     border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 8px;
-    animation: Info 0.5s;
-    font-size: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    animation: fadeIn 0.3s ease-out;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    border: 1px solid #eee;
+
+          @media (max-width: 768px) {
+position: relative;
+top: 0;
+      }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 34px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #fff transparent transparent;
+      filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+
+      @media (max-width: 768px) {
+        left: 9px;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tooltipTitle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #0049e6;
+      margin-bottom: 12px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .tooltipSteps {
+      margin-top: 16px;
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 8px;
+        position: relative;
+
+        &::before {
+          content: '•';
+          color: #0049e6;
+          font-weight: bold;
+          position: absolute;
+          left: -15px;
+        }
+      }
+    }
   }
 
   .msgError {
@@ -33,8 +97,18 @@
     .info {
       position: absolute;
       top: 32px;
-      right: 32px;
+      left: 32px;
       cursor: pointer;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @media (max-width: 768px) {
+        top: 14px;
+        left: 8px;
+      }
     }
   }
 
@@ -44,19 +118,34 @@
     gap: 16px;
   }
 
-.centerResult {
-  display: grid;
-  grid-template-columns: minmax(600px, 700px);
-  justify-content: center;
-}
+  .centerResult {
+    display: grid;
+    grid-template-columns: minmax(600px, 700px);
+    justify-content: center;
+  }
 
   .spinnerContainer {
     display: flex;
     justify-content: center;
   }
+
+  @media (max-width: 768px) {
+    .content {
+      padding: 8px;
+    }
+
+    .centerResult {
+      grid-template-columns: 1fr;
+    }
+
+      .gridResult {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  }
 }
 
-@keyframes Info {
+@keyframes fadeIn {
   from {
     transform: translateY(10%);
     opacity: 0;

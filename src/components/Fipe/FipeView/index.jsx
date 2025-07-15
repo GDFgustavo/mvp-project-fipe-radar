@@ -45,12 +45,17 @@ const FipeView = ({
     <div className={styles.inputContainer}>
       {show && (
         <div className={styles.tooltip}>
-          <p>
-            Comece selecionando a marca do veículo, e depois escolha o modelo e
-            o ano conforme sua preferência. Você também pode usar o campo de
-            busca em cada etapa do formulário para encontrar as informações
-            desejadas com mais agilidade.
-          </p>
+          <div className={styles.tooltipTitle}>
+            <InfoIcon />
+            <span>Como consultar a Tabela FIPE</span>
+          </div>
+          <p>Siga estes passos para realizar sua consulta:</p>
+          <ul className={styles.tooltipSteps}>
+            <li>Selecione a marca do veículo</li>
+            <li>Escolha o modelo e ano de preferência</li>
+            <li>Use o campo de busca para agilizar</li>
+            <li>Clique em "Consultar" para ver os valores</li>
+          </ul>
         </div>
       )}
 

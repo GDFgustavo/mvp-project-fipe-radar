@@ -1,17 +1,26 @@
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-    list-style: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  list-style: none;
+}
+
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
   }
 
-  .container {
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
+  @media (max-width: 1024px) {
+    max-width: 90%;
   }
+}
 
-  body {
-    background-color: #ECEDF2;
-  }
+body {
+  background-color: #ECEDF2;
+}
