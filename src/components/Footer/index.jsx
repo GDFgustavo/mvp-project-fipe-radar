@@ -17,7 +17,7 @@ const Footer = () => {
           </p>
           <Element name="contact">
             <a href="https://github.com/GDFgustavo" target="_blank">
-              Entre em contato
+              Entre em contato: <span>Clique aqui</span>
             </a>
           </Element>
         </div>
