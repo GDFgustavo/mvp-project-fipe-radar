@@ -4,7 +4,7 @@ export const InfoIcon = () => (
     width="24"
     height="24"
     fill="none"
-    stroke="#0049e6"
+    stroke="var(--primary)"
     viewBox="0 0 24 24"
   >
     <circle strokeWidth={2} cx="12" cy="12" r="10" />

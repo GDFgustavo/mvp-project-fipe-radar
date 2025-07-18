@@ -12,8 +12,8 @@ const SelectCustom = ({
     control: (provided) => ({
       ...provided,
       width: '100%',
-      backgroundColor: '#fff',
-      border: '1px solid #e0e0e0',
+      backgroundColor: 'var(--card-color)',
+      border: '1px solid var(--border-color)',
       borderRadius: '8px',
       padding: '8px 12px',
       cursor: 'pointer',
@@ -23,22 +23,24 @@ const SelectCustom = ({
       outline: 'none',
       transition: 'all 0.3s ease',
       '&:hover': {
-        border: '1px solid #000',
+        border: '1px solid var(--border-hover)',
         boxShadow: 'none'
       }
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: '#1f2937',
+      color: 'var(--text-color)',
       fontWeight: '500'
     }),
     input: (provided) => ({
       ...provided,
-      color: '#1f2937',
+      color: 'var(--text-color)',
       fontWeight: '500'
     }),
     menu: (provided) => ({
       ...provided,
+      border: '1px solid var(--border-color)',
+      backgroundColor: 'var(--card-color)',
       marginTop: '8px',
       borderRadius: '8px',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
@@ -53,20 +55,19 @@ const SelectCustom = ({
       fontWeight: '500',
       cursor: 'pointer',
       backgroundColor: state.isSelected
-        ? '#eef2ff'
+        ? 'var(--border-color)'
         : state.isFocused
-          ? '#f5f7ff'
-          : '#fff',
-      color: state.isSelected ? '#4f46e5' : '#4b5563',
+          ? 'var(--border-color)'
+          : 'var(--card-color)',
+      color: state.isSelected ? 'var(--primary)' : 'var(--text-color)',
       transition: 'all 0.2s ease',
       ':active': {
-        backgroundColor: '#eef2ff'
+        backgroundColor: 'var(--card-color)'
       },
       display: 'flex',
       alignItems: 'center',
-      '&:not(:last-child)': {
-        borderBottom: '1px solid #f3f4f6'
-      }
+      marginBottom: state.isSelected ? '2px' : '0px',
+      borderBottom: '1px solid var(--border-color)'
     }),
     placeholder: (provided) => ({
       ...provided,

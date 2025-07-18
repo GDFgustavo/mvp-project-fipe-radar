@@ -1,7 +1,7 @@
 import { StyleSheet } from '@react-pdf/renderer'
 
 export const brandColors = {
-  primary: '#2563eb',
+  primary: 'var(--primary)',
   secondary: '#1e40af',
   accent: '#dc2626',
   lightBg: '#f8fafc',

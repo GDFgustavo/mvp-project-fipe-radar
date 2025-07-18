@@ -1,11 +1,18 @@
+import { useEffect, useState } from 'react'
 import styles from './Styles.module.scss'
 
 
 const ThemeButton = () => {
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
   return (
     <div className={styles.themeContainer}>
       <label className={styles.content}>
-        <input type="checkbox" />
+        <input type="checkbox" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}/>
         <svg
           viewBox="0 0 384 512"
           height="0.8em"

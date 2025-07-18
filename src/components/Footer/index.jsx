@@ -1,5 +1,5 @@
 import { Element } from 'react-scroll'
-import logo from '../../assets/fipe-logo-black.png'
+import fipeLogo from '../../assets/fipe-logo.svg'
 
 import styles from './Styles.module.scss'
 
@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <div className={styles.footerContainer}>
       <div className={styles.content}>
-        <img src={logo} />
+        <img src={fipeLogo} className={styles.navbarLogo} />
         <div>
           <p>
             © <span>{currentYear}</span> Fipe Radar. Todos os direitos

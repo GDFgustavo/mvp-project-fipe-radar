@@ -1,9 +1,21 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
+const API_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjAyODJiOS1mNWY1LTQ4YzItYmVjZS1kOThhZmRhMDI3YmIiLCJlbWFpbCI6Imd1c3Rhdm9hZ3VpYXIzOThAZ21haWwuY29tIiwiaWF0IjoxNzQ4OTcyODU0fQ.bCsFbJk1SY6jh5f8qp23SkLIbwx1q3jN7ae_t_bjf3E'
+const BASE_URL = 'https://parallelum.com.br/fipe/api/v2'
+
 const fetchFipeData = async (url) => {
-  const response = await fetch(`https://parallelum.com.br/fipe/api/v2/${url}`)
-  if (!response.ok) throw new Error('Erro ao buscar dados da FIPE')
+  const response = await fetch(`${BASE_URL}/${url}`, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || 'Erro ao buscar dados da FIPE')
+  }
   return response.json()
 }
 

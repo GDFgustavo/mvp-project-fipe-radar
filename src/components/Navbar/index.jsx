@@ -1,18 +1,22 @@
-import logo from '../../assets/fipe-logo-black.png'
+import fipeLogo from '../../assets/fipe-logo.svg'
 import ThemeButton from '../Buttons/ThemeButton'
-import styles from './Styles.module.scss'
 import CustomButton from '../Buttons/CustomButton'
 import { Link } from 'react-scroll'
+import styles from './Styles.module.scss'
 
 const Navbar = () => {
   return (
     <header>
       <div className={styles.navbarContainer}>
         <ul>
-          <li>
-            <img src={logo} alt="Logo FIPE Radar" />
+          <div>
+            <img
+              src={fipeLogo}
+              className={styles.navbarLogo}
+              alt="Logo FIPE Radar"
+            />
             <h1>Fipe Radar</h1>
-          </li>
+          </div>
           <li>
             <Link to="contact" smooth={true} duration={500}>
               <CustomButton size="small">Entre em contato</CustomButton>

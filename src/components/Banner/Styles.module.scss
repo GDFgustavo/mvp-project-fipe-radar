@@ -8,7 +8,7 @@
 
   .content {
     padding: 2rem;
-    padding-top: 11rem;
+    padding-top: 9rem;
     width: 100%;
     max-width: 600px;
   }
@@ -16,6 +16,7 @@
   h2 {
     font-size: clamp(2rem, 3vw, 3.75rem);
     margin-bottom: 1rem;
+    color: #000;
   }
 
   p {
@@ -29,11 +30,11 @@
   }
 
   .contrast {
-    color: #0049e6;
+    color: var(--primary);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .bannerContainer {
     display: flex;
     text-align: center;

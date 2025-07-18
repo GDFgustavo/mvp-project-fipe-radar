@@ -10,12 +10,14 @@ const FipeResultImage = ({ vehicles }) => {
 
   const exportAsImage = async (elementId) => {
     const element = document.getElementById(elementId)
+    const currentTheme =
+      document.documentElement.getAttribute('data-theme') || 'light'
     if (!element) return
 
     const dataUrl = await toPng(element, {
       quality: 1.0,
       pixelRatio: 2,
-      backgroundColor: '#fff'
+      backgroundColor: currentTheme === 'dark' ? '#121212' : '#ffffff'
     })
 
     const link = document.createElement('a')
@@ -47,7 +49,7 @@ const FipeResultImage = ({ vehicles }) => {
             <div id="fiperesult" className={styles.resultContainer}>
               <div className={styles.header}>
                 <div className={styles.logoContainer}>
-                  <img className={styles.logo} src={fipeLogo} />
+                  <img className={styles.navbarLogo} src={fipeLogo} />
                 </div>
                 <div>
                   <h2 className={styles.title}>Relatório de Veículo</h2>

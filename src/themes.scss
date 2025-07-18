@@ -1,0 +1,31 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --body-bg: #ECEDF2;
+  --border-color: #e0e0e0;
+  --border-hover: #000000;
+  --card-color: #ffffff;
+
+  --card-price: linear-gradient(90deg, #f0f4ff, #fffafa);
+
+  --label-color: #64748b;
+  --navbar-color: #ffffff;
+  --primary: #0049e6;
+  --logo-filter: none;
+}
+
+[data-theme='dark'] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --body-bg: #0F0F0F;
+  --border-color: #363636;
+  --border-hover: #ffffff;
+  --card-color: #1F1F1F;
+
+  --card-price: linear-gradient(90deg, #0F0F0F, #1F1F1F);
+
+  --label-color: #b7b6b6;
+  --navbar-color: #1f1f1f;
+  --primary: #0049e6;
+  --logo-filter: invert(1);
+}
