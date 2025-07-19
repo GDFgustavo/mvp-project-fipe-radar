@@ -1,4 +1,5 @@
 import './themes.scss'
+import './assets/fonts/Roboto/fonts.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'

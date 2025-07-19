@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { toPng } from 'html-to-image'
-import fipeLogo from '../../../assets/fipe-logo-black.png'
+import fipeLogo from '../../../assets/fipe-logo.svg'
 import styles from './Styles.module.scss'
 import CustomButton from '../../Buttons/CustomButton'
 import { DownloadIcon, ImageIcon } from '../../SvgIcons'
