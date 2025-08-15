@@ -17,6 +17,10 @@ const FipeView = ({
 }) => {
   const result1 = !showCompare && fipeForm1.fipeDetails
   const result2 = showCompare && fipeForm1.fipeDetails && fipeForm2.fipeDetails
+  const vehicles = result2
+    ? [fipeForm1.fipeDetails, fipeForm2.fipeDetails].filter(Boolean)
+    : [fipeForm1.fipeDetails].filter(Boolean)
+
   const [show, setShow] = useState(false)
 
   const isFilled = (form) => !!form.selectedModel && !!form.selectedYear
@@ -89,13 +93,7 @@ const FipeView = ({
         ) : (
           showResults && (
             <>
-              <FipeDownload
-                vehicles={
-                  result2
-                    ? [fipeForm1.fipeDetails, fipeForm2.fipeDetails]
-                    : [fipeForm1.fipeDetails]
-                }
-              />
+              <FipeDownload vehicles={vehicles} />
               <div
                 className={
                   !showCompare && fipeForm1.fipeDetails

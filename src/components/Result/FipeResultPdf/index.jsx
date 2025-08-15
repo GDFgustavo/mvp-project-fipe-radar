@@ -31,6 +31,9 @@ Font.register({
 })
 
 const FipeResultPdf = ({ vehicles }) => {
+  if (!Array.isArray(vehicles) || vehicles.length === 0) {
+    return null // Não renderiza se não houver dados válidos
+  }
   return (
     <div>
       <PDFDownloadLink

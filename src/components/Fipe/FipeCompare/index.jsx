@@ -6,7 +6,8 @@ import { AddIcon, RemoveIcon } from '../../SvgIcons'
 const FipeCompare = ({ showCompare, toggleCompare, onConsult }) => (
   <div className={styles.btn}>
     <CustomButton size="large" onClick={toggleCompare}>
-      {showCompare ? <RemoveIcon /> : <AddIcon />}
+      {showCompare && <RemoveIcon />}
+      {!showCompare && <AddIcon />}
       {showCompare ? 'Remover comparação' : 'Adicionar comparação'}
     </CustomButton>
     <Link

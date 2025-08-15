@@ -7,8 +7,8 @@ const FipeDownload = ({ vehicles }) => (
   <div className={styles.actionButtons}>
     <h3>Resultado FIPE</h3>
     <div className={styles.actionItems}>
-      <Suspense>
-        <FipeResultPdf vehicles={vehicles} />
+      <Suspense key={vehicles.map((v) => v.codeFipe).join('-')}>
+        {vehicles?.length > 0 && <FipeResultPdf vehicles={vehicles} />}
       </Suspense>
       <FipeResultImage vehicles={vehicles} />
     </div>
