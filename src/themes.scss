@@ -12,6 +12,8 @@
   --navbar-color: #ffffff;
   --primary: #0049e6;
   --logo-filter: none;
+  --banner-img: url('./assets/main-banner.png');
+  --banner-mobile-img: url('./assets/main-banner-mobile.png')
 }
 
 [data-theme='dark'] {
@@ -28,4 +30,6 @@
   --navbar-color: #1f1f1f;
   --primary: #0049e6;
   --logo-filter: invert(1);
+  --banner-img: url('./assets/main-banner-dark.png');
+  --banner-mobile-img: url('./assets/main-banner-dark-mobile.png')
 }

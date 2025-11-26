@@ -1,0 +1,51 @@
+.bannerContainer {
+  background-image: var(--banner-img);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 480px;
+
+  .content {
+    padding: 2rem;
+    padding-top: 9rem;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 3vw, 3.75rem);
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  p {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--text-color);
+    margin-bottom: 1em;
+  }
+
+  span {
+    margin-right: 16px;
+  }
+
+  .contrast {
+    color: var(--primary);
+  }
+}
+
+@media (max-width: 767px) {
+  .bannerContainer {
+    display: flex;
+    text-align: center;
+    background-image: var(--banner-mobile-img);
+    height: 432px;
+    background-position: center top;
+    overflow: hidden;
+
+    .content {
+      padding: 1em;
+      padding-top: 6em;
+    }
+  }
+}
