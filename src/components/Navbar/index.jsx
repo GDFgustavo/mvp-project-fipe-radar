@@ -3,6 +3,7 @@ import ThemeButton from '../Buttons/ThemeButton'
 import CustomButton from '../Buttons/CustomButton'
 import { Link } from 'react-scroll'
 import styles from './Styles.module.scss'
+import { Link as LinkRouter } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -10,11 +11,13 @@ const Navbar = () => {
       <div className={styles.navbarContainer}>
         <ul>
           <div>
-            <img
-              src={fipeLogo}
-              className={styles.navbarLogo}
-              alt="Logo FIPE Radar"
-            />
+            <LinkRouter to="/">
+              <img
+                src={fipeLogo}
+                className={styles.navbarLogo}
+                alt="Logo FIPE Radar"
+              />
+            </LinkRouter>
             <h1>Fipe Radar</h1>
           </div>
           <li>
