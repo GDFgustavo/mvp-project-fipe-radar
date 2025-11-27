@@ -101,6 +101,24 @@ export const useFipeForm = () => {
 
   const isLoading = loadingDetails
 
+  const { data: carsBrands } = useBrands('cars')
+  const { data: motorcyclesBrands } = useBrands('motorcycles')
+  const { data: trucksBrands } = useBrands('trucks')
+
+  const allBrands = [
+    ...(carsBrands?.map((b) => ({ ...b, type: 'cars' })) || []),
+    ...(motorcyclesBrands?.map((b) => ({ ...b, type: 'motorcycles' })) || []),
+    ...(trucksBrands?.map((b) => ({ ...b, type: 'trucks' })) || [])
+  ]
+
+  const handleBrandsSlider = (brand) => {
+    setVehicleType(brand.type)
+    setSelectedBrand(brand.code)
+    setSelectedModel('')
+    setSelectedYear('')
+    setShouldFetch(false)
+  }
+
   const handleVehicleChange = (e) => {
     setVehicleType(e.value)
     setSelectedBrand('')
@@ -143,11 +161,17 @@ export const useFipeForm = () => {
     years,
     fipeDetails,
     isLoading,
+    allBrands,
     resetForm,
     handleSubmit,
     handleVehicleChange,
     handleBrandChange,
     handleModelChange,
-    handleYearChange
+    handleYearChange,
+    handleBrandsSlider,
+    setVehicleType,
+    setSelectedBrand,
+    setSelectedModel,
+    setSelectedYear
   }
 }

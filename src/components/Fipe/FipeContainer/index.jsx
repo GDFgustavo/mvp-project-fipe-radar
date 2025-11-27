@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { useFipeForm } from '../../../Features/Fipe/useFipe'
 import FipeView from '../FipeView'
 
-const FipeContainer = () => {
+const FipeContainer = ({ fipeForm }) => {
   const [showCompare, setShowCompare] = useState(false)
 
-  const fipeForm1 = useFipeForm()
+  const fipeForm1 = fipeForm
   const fipeForm2 = useFipeForm()
   const isLoading = fipeForm1.isLoading || fipeForm2.isLoading
 
