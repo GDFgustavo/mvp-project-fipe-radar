@@ -1,5 +1,5 @@
 .bannerContainer {
-  background-image: var(--banner-img);
+  background-image: var(--hero);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -38,7 +38,7 @@
   .bannerContainer {
     display: flex;
     text-align: center;
-    background-image: var(--banner-mobile-img);
+    background-image: var(--hero-mobile);
     height: 432px;
     background-position: center top;
     overflow: hidden;

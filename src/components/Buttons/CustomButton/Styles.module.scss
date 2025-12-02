@@ -10,10 +10,10 @@
   gap: 8px;
   background-color: var(--primary);
   color: #fff;
+  text-transform: uppercase;
 
   &.small {
     font-size: 14px;
-    // width: 12em;
   }
 
   &.medium {
@@ -23,7 +23,7 @@
 
   &.large {
     font-size: 16px;
-    width: 16em;
+    width: 17em;
   }
 
     @media (max-width: 768px) {
