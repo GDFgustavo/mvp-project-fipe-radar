@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom'
 
 export default function NotFound() {
   return (
-    <div style={{ textAlign: 'center', padding: '8rem' }}>
+    <div
+      className="container"
+      style={{ textAlign: 'center', marginTop: '16rem' }}
+    >
       <h1
         style={{
           backgroundColor: 'var(--primary)',
