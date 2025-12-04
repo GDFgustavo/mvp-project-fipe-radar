@@ -46,7 +46,6 @@
     align-items: end;
   }
 
-
   label {
     font-size: 14px;
     font-weight: 500;
@@ -140,7 +139,25 @@
   .inputBase:hover {
     border: 1px solid var(--border-hover);
   }
+
+  .errorForm {
+    text-align: center;
+    margin-top: 24px;
+    color: var(--text-color);
+  }
 }
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.success {
+  color: var(--text-color);
+}
+
 
 @media (max-width: 768px) {
   .banner {

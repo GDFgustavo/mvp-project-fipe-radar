@@ -3,6 +3,7 @@ import InputSelector from '../../components/Form/InputSelector'
 import { useFipeForm } from '../../Features/Fipe/useFipe'
 import styles from './Styles.module.scss'
 import CustomButton from '../../components/Buttons/CustomButton'
+import Spinner from '../../components/Spinner'
 import {
   BellIcon,
   DownIcon,
@@ -13,16 +14,136 @@ import {
 } from '../../components/SvgIcons'
 import { Element, Link } from 'react-scroll'
 import { NumericFormat } from 'react-number-format'
+import supabase from '../../supabase-client'
 
 const Alerts = ({ onChange }) => {
   const fipeForm3 = useFipeForm()
   const [email, setEmail] = useState('')
   const [priceTrend, setPriceTrend] = useState('up')
-  const [targetPrice, setTargetPrice] = useState('')
+  const [targetPrice, setTargetPrice] = useState(1000)
+  const [formError, setFormError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const brandName = fipeForm3.brands?.find(
+    (b) => b.code === fipeForm3.selectedBrand
+  )?.name
+
+  const modelName = fipeForm3.models?.find(
+    (m) => m.code === fipeForm3.selectedModel
+  )?.name
+
+  const yearName = fipeForm3.years?.find(
+    (y) => y.code === fipeForm3.selectedYear
+  )?.name
 
   const handleClick = (value) => {
     setPriceTrend(value)
     onChange?.(value)
+  }
+
+  const MIN_VALUE = 1000
+
+  function minValueInput(values) {
+    const numeric = Number(values.value)
+
+    if (!values.value) {
+      setTargetPrice('')
+      return
+    }
+
+    if (numeric < MIN_VALUE) {
+      setTargetPrice(numeric)
+      return
+    }
+
+    setTargetPrice(numeric)
+  }
+
+  function fixMinOnBlur() {
+    if (!targetPrice || Number(targetPrice) < MIN_VALUE) {
+      setTargetPrice(MIN_VALUE)
+    }
+  }
+
+  const monitoring = async () => {
+    if (
+      !fipeForm3.selectedBrand ||
+      !fipeForm3.selectedModel ||
+      !fipeForm3.selectedYear ||
+      !targetPrice ||
+      !priceTrend ||
+      !email
+    ) {
+      setFormError('Todos os campos são obrigatórios!.')
+      setTimeout(() => setFormError(''), 4000)
+      return
+    }
+
+    if (priceTrend === 'down' && Number(targetPrice) === MIN_VALUE) {
+      setFormError(
+        'Para monitorar queda de preço, selecione um valor acima de R$ 1.000.'
+      )
+      setTimeout(() => setFormError(''), 4000)
+      return
+    }
+
+    setLoading(true)
+
+    const monitoringData = {
+      vehicle_type: fipeForm3.vehicleType,
+      brand: fipeForm3.selectedBrand,
+      brand_name: brandName,
+      model: fipeForm3.selectedModel,
+      model_name: modelName,
+      year: fipeForm3.selectedYear,
+      year_name: yearName,
+      target_price: Number(targetPrice),
+      price_trend: priceTrend,
+      email,
+      email_sent: false,
+      is_confirmed: false
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('price_alerts')
+        .insert([monitoringData])
+        .select()
+
+      if (error) throw new Error('Erro ao salvar alerta no banco.')
+
+      const newAlert = data[0]
+
+      const res = await fetch(
+        'https://rztauzydejjhnkkikfyv.functions.supabase.co/send-confirmation',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+          },
+          body: JSON.stringify({ record: newAlert })
+        }
+      )
+
+      if (!res.ok) throw new Error('Falha ao enviar e-mail de confirmação.')
+
+      setSuccess(
+        'Alerta criado com sucesso!. Verifique seu e-mail para confirmar o alerta.'
+      )
+      setTimeout(() => setSuccess(''), 7000)
+    } catch {
+      setError('Ocorreu um erro ao criar o alerta. Tente novamente mais tarde.')
+      setTimeout(() => setError(''), 7000)
+    } finally {
+      fipeForm3.resetForm()
+      setTargetPrice('')
+      setPriceTrend('up')
+      setEmail('')
+      setLoading(false)
+    }
   }
 
   return (
@@ -51,16 +172,16 @@ const Alerts = ({ onChange }) => {
                   </div>
                   <h3>Preço alvo</h3>
                 </div>
-                <label>Preço alvo</label>
+                <label>Preço alvo (Valor mínimo: R$ 1.000)</label>
                 <div className={styles.inputWrapper}>
                   <span className={styles.prefix}>R$</span>
                   <NumericFormat
                     value={targetPrice}
-                    onValueChange={(values) => setTargetPrice(values.value)}
+                    onValueChange={minValueInput}
+                    onBlur={fixMinOnBlur}
                     thousandSeparator="."
                     decimalSeparator=","
                     decimalScale={0}
-                    fixedDecimalScale={false}
                     allowNegative={false}
                     isAllowed={(values) => values.value.length <= 9}
                     className={styles.inputBase}
@@ -112,13 +233,22 @@ const Alerts = ({ onChange }) => {
               </div>
 
               <div className={`${styles.field} `}>
-                <CustomButton className={styles.submitBtn}>
+                <CustomButton className={styles.submitBtn} onClick={monitoring}>
                   <BellIcon />
                   Ativar notificações
                 </CustomButton>
               </div>
             </div>
+            {formError && <p className={styles.errorForm}>{formError}</p>}
           </div>
+          {loading ? (
+            <div className={styles.spinnerContainer}>
+              <Spinner />
+            </div>
+          ) : (
+            success && <p className={styles.success}>{success}</p>
+          )}
+          {error && <p className={styles.error}>{error}</p>}
         </Element>
       </div>
     </>
