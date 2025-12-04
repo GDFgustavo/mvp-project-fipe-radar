@@ -114,3 +114,120 @@ export const AddIcon = () => (
     <path d="M12 5v14"></path>
   </svg>
 )
+
+export const UpIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="var(--text-color)"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    data-id="element-97"
+  >
+    <path d="M16 7h6v6"></path>
+    <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+  </svg>
+)
+
+export const DownIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="var(--text-color)"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    data-id="element-100"
+  >
+    <path d="M16 17h6v-6"></path>
+    <path d="m22 17-8.5-8.5-5 5L2 7"></path>
+  </svg>
+)
+
+export const VehicleIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#fff"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    display="block"
+  >
+    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+    <circle cx="7" cy="17" r="2"></circle>
+    <path d="M9 17h6"></path>
+    <circle cx="17" cy="17" r="2"></circle>
+  </svg>
+)
+
+export const TargetIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#fff"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    display="block"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <circle cx="12" cy="12" r="6"></circle>
+    <circle cx="12" cy="12" r="2"></circle>
+  </svg>
+)
+
+export const EmailIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#fff"
+    strokeWidth="2"
+    strokeinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    display="block"
+  >
+    <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+  </svg>
+)
+
+export const BellIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#fff"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    display="block"
+  >
+    <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+    <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path>
+  </svg>
+)

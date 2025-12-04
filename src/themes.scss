@@ -12,6 +12,10 @@
   --navbar-color: #ffffff;
   --primary: #0049e6;
   --logo-filter: none;
+  --hero: url('./assets/hero-light.png');
+  --hero-mobile: url('./assets/hero-mobile-light.png');
+  --monitor-hero: url('./assets/monitor-hero-light.png');
+  --monitor-hero-mobile: url('./assets/monitor-hero-mobile-light.png');
 }
 
 [data-theme='dark'] {
@@ -28,4 +32,8 @@
   --navbar-color: #1f1f1f;
   --primary: #0049e6;
   --logo-filter: invert(1);
+  --hero: url('./assets/hero-dark.png');
+  --hero-mobile: url('./assets/hero-mobile-dark.png');
+  --monitor-hero: url('./assets/monitor-hero-dark.png');
+  --monitor-hero-mobile: url('./assets/monitor-hero-mobile-dark.png');
 }

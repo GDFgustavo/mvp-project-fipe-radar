@@ -1,0 +1,29 @@
+.container {
+    padding: 4rem;
+
+  ul {
+    display: flex;
+    gap: 24px;
+  }
+
+  li {
+    padding: 24px 24px;
+    background-color: var(--card-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 767px) {
+.container {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  li {
+    padding: 12px 12px;
+  }
+}
+}

@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-const API_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjAyODJiOS1mNWY1LTQ4YzItYmVjZS1kOThhZmRhMDI3YmIiLCJlbWFpbCI6Imd1c3Rhdm9hZ3VpYXIzOThAZ21haWwuY29tIiwiaWF0IjoxNzQ4OTcyODU0fQ.bCsFbJk1SY6jh5f8qp23SkLIbwx1q3jN7ae_t_bjf3E'
-const BASE_URL = 'https://parallelum.com.br/fipe/api/v2'
+const apiKey = import.meta.env.VITE_API_FIPE_KEY
+const apiUrl = import.meta.env.VITE_API_FIPE_BASE_URL
 
 const fetchFipeData = async (url) => {
-  const response = await fetch(`${BASE_URL}/${url}`, {
+  const response = await fetch(`${apiUrl}/${url}`, {
     headers: {
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json'
     }
   })
@@ -102,6 +101,24 @@ export const useFipeForm = () => {
 
   const isLoading = loadingDetails
 
+  const { data: carsBrands } = useBrands('cars')
+  const { data: motorcyclesBrands } = useBrands('motorcycles')
+  const { data: trucksBrands } = useBrands('trucks')
+
+  const allBrands = [
+    ...(carsBrands?.map((b) => ({ ...b, type: 'cars' })) || []),
+    ...(motorcyclesBrands?.map((b) => ({ ...b, type: 'motorcycles' })) || []),
+    ...(trucksBrands?.map((b) => ({ ...b, type: 'trucks' })) || [])
+  ]
+
+  const handleBrandsSlider = (brand) => {
+    setVehicleType(brand.type)
+    setSelectedBrand(brand.code)
+    setSelectedModel('')
+    setSelectedYear('')
+    setShouldFetch(false)
+  }
+
   const handleVehicleChange = (e) => {
     setVehicleType(e.value)
     setSelectedBrand('')
@@ -144,11 +161,17 @@ export const useFipeForm = () => {
     years,
     fipeDetails,
     isLoading,
+    allBrands,
     resetForm,
     handleSubmit,
     handleVehicleChange,
     handleBrandChange,
     handleModelChange,
-    handleYearChange
+    handleYearChange,
+    handleBrandsSlider,
+    setVehicleType,
+    setSelectedBrand,
+    setSelectedModel,
+    setSelectedYear
   }
 }
