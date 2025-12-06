@@ -7,7 +7,7 @@ const BrandsCarousel = ({ fipeForm }) => {
 
   return (
     <div className={styles.container}>
-      <Marquee pauseOnHover speed={60}>
+      <Marquee speed={60}>
         <ul>
           {allBrands.map((brand) => (
             <div key={brand.code}>

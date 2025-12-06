@@ -38,7 +38,8 @@ const Confirm = () => {
       className="container"
       style={{
         textAlign: 'center',
-        marginTop: '16rem'
+        marginTop: '16rem',
+        color: 'var(--text-color)'
       }}
     >
       <h2>{message}</h2>
