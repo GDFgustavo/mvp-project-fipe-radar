@@ -66,7 +66,7 @@ const SelectCustom = ({
       },
       display: 'flex',
       alignItems: 'center',
-      marginBottom: state.isSelected ? '2px' : '0px',
+      marginBottom: state.isSelected ? '4px' : '0px',
       borderBottom: '1px solid var(--border-color)'
     }),
     placeholder: (provided) => ({

@@ -10,13 +10,13 @@ import {
   EmailIcon,
   TargetIcon,
   UpIcon,
-  VehicleIcon
+  CarIcon
 } from '../../components/SvgIcons'
 import { Element, Link } from 'react-scroll'
 import { NumericFormat } from 'react-number-format'
 import supabase from '../../supabase-client'
 
-const Alerts = ({ onChange }) => {
+const FipeMonitoring = ({ onChange }) => {
   const fipeForm3 = useFipeForm()
   const [email, setEmail] = useState('')
   const [priceTrend, setPriceTrend] = useState('up')
@@ -157,8 +157,8 @@ const Alerts = ({ onChange }) => {
           <div className={styles.content}>
             <h1>Configure seu monitoramento</h1>
             <div className={styles.section}>
-              <div>
-                <VehicleIcon />
+              <div className={styles.svg}>
+                <CarIcon />
               </div>
               <h3>Detalhes do veículo</h3>
             </div>
@@ -255,4 +255,4 @@ const Alerts = ({ onChange }) => {
   )
 }
 
-export default Alerts
+export default FipeMonitoring

@@ -37,6 +37,11 @@
       border-radius: 8px;
       background-color: var(--primary);
     }
+
+    .svg {
+      width: 24px;
+      color: #fff;
+    }
   }
 
   .gridContainer {
@@ -44,15 +49,17 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     align-items: end;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      margin-top: 16px;
+      color: var(--label-color);
+    }
   }
 
-  label {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 8px;
-    margin-top: 16px;
-    color: var(--label-color);
-  }
+
 
   .inputWrapper {
     position: relative;
@@ -91,6 +98,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: all 0.2s;
     }
 
     .buttonDefault {
@@ -159,7 +167,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .banner {
     background-position: center;
     background-image: var(--monitor-hero-mobile);
