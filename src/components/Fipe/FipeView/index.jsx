@@ -75,6 +75,7 @@ const FipeView = ({
             onConsult={consult}
             showCompare={showCompare}
             toggleCompare={toggleCompare}
+            canCompare={isFilled(fipeForm1)}
           />
         </div>
       </Element>
