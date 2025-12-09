@@ -1,45 +1,99 @@
 .navbarContainer {
-  position: absolute;
-  top: 8px;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  padding: 0 16px;
+  z-index: 20;
+
+  a {
+    text-decoration: none;
+  }
 
   ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
-    max-width: 1280px;
-    border-radius: 16px;
-    padding: 8px 24px;
     background-color: var(--navbar-color);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
-    div {
+    li {
+      flex: 1;
+      display: flex;
+      align-items: center;
+
+      p {
+        position: relative;
+        padding: 8px;
+        font-weight: 500;
+        color: var(--text-color);
+        cursor: pointer;
+
+        &::after {
+          content: "";
+          position: absolute;
+          height: 1.5px;
+          width: 0;
+          bottom: 0;
+          left: 0;
+          background-color: var(--primary);
+          transition: all 0.3s ease;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+
+    .left {
+      gap: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-  }
 
-  li {
-    display: flex;
-    align-items: center;
-    gap: 3em;
+    .center {
+      justify-content: center;
+      gap: 16px;
+    }
 
-    @media (max-width: 768px) {
+    .right {
+      justify-content: flex-end;
       gap: 16px;
     }
   }
 
+  .desktopMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 40px;
+    border-bottom: 1px solid var(--navbar-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+    .theme {
+      p {
+        display: none;
+      }
+    }
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+
+  .menuContainer {
+    display: none;
+  }
 
   h1 {
     font-size: 20px;
     color: var(--text-color);
-    gap: 0px;
+  }
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
   }
 
   .navbarLogo {
@@ -48,24 +102,99 @@
   }
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
   }
 
   @media (max-width: 768px) {
     ul {
       padding: 12px 16px;
+
+      .mobileMenu {
+        display: block;
+        overflow: hidden;
+        max-height: 0;
+        margin-bottom: 8px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid var(--navbar-border);
+
+        &.open {
+          max-height: 600px;
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          padding: 8px 0;
+          opacity: 0;
+          transform: translateY(-10px);
+          transition: all 0.3s ease;
+
+          p {
+            font-size: 16px;
+            color: var(--text-color);
+
+            &::after {
+              content: none;
+            }
+          }
+        }
+
+        &:not(.open) li {
+          pointer-events: none;
+        }
+
+        &.open li {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        li:nth-child(1) {
+          transition-delay: 0.05s;
+        }
+
+        li:nth-child(2) {
+          transition-delay: 0.1s;
+        }
+
+        li:nth-child(3) {
+          transition-delay: 0.15s;
+        }
+
+        li:nth-child(4) {
+          transition-delay: 0.2s;
+        }
+      }
+
+      .desktopMenu {
+        display: none;
+      }
+
+      .menuContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .menu {
+        display: flex;
+        justify-content: right;
+      }
     }
 
     h1 {
-      font-size: 18px;
-      display: none;
-    }
+      font-size: 16px;
 
-    img {
-      width: 38px;
-      height: 38px;
+      @media (max-width: 320px) {
+        display: none;
+      }
     }
   }
 }
