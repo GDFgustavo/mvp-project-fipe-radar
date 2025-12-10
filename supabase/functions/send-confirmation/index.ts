@@ -1,11 +1,10 @@
-// Supabase Edge Function: send-alert-email
 // Gera token de confirmação e envia e-mail de ativação
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 import { Resend } from "https://esm.sh/resend@3.2.0"
 
 Deno.serve(async (req) => {
-  // 🔹 1. Trata o preflight CORS
+  // Trata o preflight CORS
   if (req.method === "OPTIONS") {
     return new Response("ok", {
       headers: {
@@ -17,7 +16,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // 🔹 2. Variáveis de ambiente
+    // Variáveis de ambiente
     const supabaseUrl = Deno.env.get("SUPA_URL")!
     const supabaseKey = Deno.env.get("SUPA_SERVICE_ROLE_KEY")!
     const resendKey = Deno.env.get("RESEND_API_KEY")!
@@ -25,19 +24,19 @@ Deno.serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey)
     const resend = new Resend(resendKey)
 
-    // 🔹 3. Lê o corpo da requisição
+    // Lê o corpo da requisição
     const { record } = await req.json()
 
-    // 🔹 4. Gera token (ou usa o do Supabase)
+    // Gera token (ou usa o do Supabase)
     const token = record.confirmation_token || crypto.randomUUID()
 
-    // 🔹 5. Atualiza o registro com o token
+    // Atualiza o registro com o token
     await supabase
       .from("price_alerts")
       .update({ confirmation_token: token })
       .eq("id", record.id)
 
-    // 🔹 6. Cria URL de confirmação
+    // Cria URL de confirmação
     const confirmUrl = `https://www.fiperadar.site/confirm?token=${token}`
 
     const emailHtml = `
@@ -62,12 +61,12 @@ Deno.serve(async (req) => {
           <div class="container">
             <div class="header">
               <img src="https://servidor-estaticos-one-puce.vercel.app/fipe_logo_black.png" alt="FipeRadar" width="48" style="margin: 0 auto 16px;">
-              <h1 class="heading">Confirme seu alerta FIPE</h1>
+              <h1 class="heading">Confirme seu monitoramento FIPE</h1>
             </div>
 
             <div class="content">
               <p>Olá 👋,</p>
-              <p>Você (ou alguém) solicitou receber alertas de preço da FIPE para o veículo:</p>
+              <p>Você (ou alguém) solicitou receber monitoramentos de preço da FIPE para o veículo:</p>
 
               <div class="vehicle-box">
                 <p class="vehicle-name">${record.brand_name || 'Veículo não especificado'}</p>
@@ -76,11 +75,11 @@ Deno.serve(async (req) => {
               <p>Para confirmar que este e-mail realmente deseja receber as notificações, clique no botão abaixo:</p>
 
               <p>
-                <a href="${confirmUrl}" class="button">Confirmar meu alerta</a>
+                <a href="${confirmUrl}" class="button">Confirmar meu monitoramento</a>
               </p>
 
               <p style="font-size: 14px; color: #777; margin-top: 24px;">
-                Caso você não tenha solicitado este alerta, basta ignorar este e-mail.
+                Caso você não tenha solicitado este monitoramento, basta ignorar este e-mail.
                 Nenhuma ação será tomada.
               </p>
             </div>
@@ -96,7 +95,7 @@ Deno.serve(async (req) => {
       </html>
     `
 
-    // 🔹 7. Envia o e-mail
+    // Envia o e-mail
     await resend.emails.send({
       from: "Fipe Radar <alerts@fiperadar.site>",
       to: record.email,
@@ -104,7 +103,7 @@ Deno.serve(async (req) => {
       html: emailHtml,
     })
 
-    // 🔹 8. Retorna resposta OK + CORS
+    // Retorna resposta OK + CORS
     return new Response("E-mail de confirmação enviado com sucesso.", {
       status: 200,
       headers: {

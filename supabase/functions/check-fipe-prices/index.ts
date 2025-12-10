@@ -3,12 +3,12 @@ import { Resend } from "https://esm.sh/resend@3.2.0"
 
 const supabase = createClient(
   Deno.env.get("SUPA_URL")!,
-  Deno.env.get("SUPA_SERVICE_ROLE_KEY")! // importante: precisa do service role
+  Deno.env.get("SUPA_SERVICE_ROLE_KEY")!
 )
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY")!)
 
-// 🔹 Função para consultar a FIPE
+//  Função para consultar a FIPE
 async function getFipePrice(
   vehicleType: string,
   brand: string,
@@ -16,7 +16,6 @@ async function getFipePrice(
   year: string
 ) {
   try {
-    // exemplo de endpoint (ajuste conforme necessário)
     const url = `https://parallelum.com.br/fipe/api/v2/${vehicleType}/brands/${brand}/models/${model}/years/${year}`
     const response = await fetch(url)
 
@@ -45,9 +44,9 @@ async function getFipePrice(
   }
 }
 
-// 🔹 Função principal
+//  Função principal
 Deno.serve(async () => {
-  console.log("Verificando alertas de preço FIPE...")
+  console.log("Verificando monitoramento de preço FIPE...")
 
   const { data: alerts, error } = await supabase
     .from("price_alerts")
@@ -56,8 +55,8 @@ Deno.serve(async () => {
     .eq("is_confirmed", true)
 
   if (error) {
-    console.error("Erro ao buscar alertas:", error)
-    return new Response("Erro ao buscar alertas", { status: 500 })
+    console.error("Erro ao buscar monitoramentos:", error)
+    return new Response("Erro ao buscar monitoramentos", { status: 500 })
   }
 
   for (const alert of alerts) {
@@ -81,7 +80,7 @@ Deno.serve(async () => {
       <div style="text-align:center; background:linear-gradient(135deg, #0049e6 0%, #6797ff 100%); border-radius:12px; border:1px solid #e6e6e6; padding:32px;">
         <img src="https://servidor-estaticos-one-puce.vercel.app/fipe_logo_white.png" width="48" alt="FipeRadar" style="margin:0 auto 16px;" />
         <h1 style="margin:0; font-size:24px; color:white; line-height:1.3;">
-          🎯 Alerta FIPE Ativado!
+          🎯 Monitoramento FIPE Ativado!
         </h1>
         <p style="margin:10px 0 0 0; font-size:16px; color:white; opacity:0.9;">
           Seu veículo atingiu o preço alvo desejado
@@ -164,9 +163,9 @@ Deno.serve(async () => {
       if ((alert.price_trend === 'down' && fipePrice && fipePrice <= alert.target_price) ||
         (alert.price_trend === 'up' && fipePrice && fipePrice >= alert.target_price)) {
         await resend.emails.send({
-          from: "Fipe Radar <alerts@fiperadar.site>",
+          from: "Fipe Radar <monitoring@fiperadar.site>",
           to: alert.email,
-          subject: "🚗 Alerta de preço FIPE atingido!",
+          subject: "🚗 Monitoramento de preço FIPE atingido!",
           html: emailHtml,
         })
 
@@ -178,7 +177,7 @@ Deno.serve(async () => {
         console.log(`📩 Email enviado para ${alert.email}`)
       }
     } catch (err) {
-      console.error("Erro ao processar alerta:", err)
+      console.error("Erro ao processar monitoramento:", err)
     }
   }
 

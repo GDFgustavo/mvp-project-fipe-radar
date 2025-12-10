@@ -1,5 +1,3 @@
-// Supabase Edge Function: cleanup-unconfirmed
-
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
 Deno.serve(async () => {
@@ -10,13 +8,13 @@ Deno.serve(async () => {
   const { error } = await supabase
     .from("price_alerts")
     .delete()
-    .lt("created_at", new Date(Date.now() - 15 * 1000).toISOString()) // 24h atrás
+    .lt("created_at", new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
     .eq("is_confirmed", false)
 
   if (error) {
-    console.error("Erro ao limpar alertas antigos:", error)
-    return new Response("Erro ao limpar alertas", { status: 500 })
+    console.error("Erro ao limpar monitoramentos antigos:", error)
+    return new Response("Erro ao limpar monitoramentos", { status: 500 })
   }
 
-  return new Response("Alertas antigos removidos com sucesso!", { status: 200 })
+  return new Response("Monitoramentos antigos removidos com sucesso!", { status: 200 })
 })
