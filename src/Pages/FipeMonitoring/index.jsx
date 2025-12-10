@@ -112,7 +112,7 @@ const FipeMonitoring = ({ onChange }) => {
         .insert([monitoringData])
         .select()
 
-      if (error) throw new Error('Erro ao salvar alerta no banco.')
+      if (error) throw new Error('Erro ao salvar monitoramento no banco.')
 
       const newAlert = data[0]
 
@@ -131,11 +131,13 @@ const FipeMonitoring = ({ onChange }) => {
       if (!res.ok) throw new Error('Falha ao enviar e-mail de confirmação.')
 
       setSuccess(
-        'Alerta criado com sucesso!. Verifique seu e-mail para confirmar o alerta.'
+        'Monitoramento criado com sucesso!. Verifique seu e-mail para confirmar o alerta.'
       )
       setTimeout(() => setSuccess(''), 7000)
     } catch {
-      setError('Ocorreu um erro ao criar o alerta. Tente novamente mais tarde.')
+      setError(
+        'Ocorreu um erro ao criar o monitoramento. Tente novamente mais tarde.'
+      )
       setTimeout(() => setError(''), 7000)
     } finally {
       fipeForm3.resetForm()
@@ -155,7 +157,7 @@ const FipeMonitoring = ({ onChange }) => {
       <div className="container">
         <Element name="monitoring">
           <div className={styles.content}>
-            <h1>Configure seu monitoramento</h1>
+            <h2>Configure seu monitoramento</h2>
             <div className={styles.section}>
               <div className={styles.svg}>
                 <CarIcon />
