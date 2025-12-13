@@ -1,13 +1,29 @@
 {
   "redirects": [
-    { "source": "http://fiperadar.site", "destination": "https://www.fiperadar.site" },
-    { "source": "http://www.fiperadar.site", "destination": "https://www.fiperadar.site" },
-    { "source": "https://fiperadar.site", "destination": "https://www.fiperadar.site" }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "fiperadar.site"
+        }
+      ],
+      "destination": "https://www.fiperadar.site/:path*",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/site.webmanifest", "destination": "/site.webmanifest" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
