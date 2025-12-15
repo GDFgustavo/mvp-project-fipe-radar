@@ -1,12 +1,43 @@
-# React + Vite
+# 📁 Fipe Radar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma de consulta de preços FIPE de veículos com sistema de monitoramento inteligente via e-mail.
 
-Currently, two official plugins are available:
+## 🎯 Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O Fipe Radar foi desenvolvido para facilitar a consulta, comparação e acompanhamento de preços de veículos utilizando a tabela FIPE.
 
-## Expanding the ESLint configuration
+Além da consulta tradicional, a aplicação oferece recursos como:
+- exportação de resultados
+- comparação entre veículos
+- monitoramento automático de preços com alertas por e-mail
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Funcionalidades
+
+### 🔎 Consulta FIPE
+- Seleção de tipo de veículo, marca, modelo e ano
+- Consulta em tempo real via API da tabela FIPE
+- Exibição clara e organizada do resultado
+
+### 📄 Exportação de resultados
+- Exportar consulta em PDF 
+- Exportar consulta como imagem
+
+### ⚖️ Comparação FIPE
+- Comparação entre dois veículos diferentes
+- Dois formulários independentes para análise lado a lado
+
+### 📬 Monitoramento inteligente
+- Definição de preço alvo pelo usuário
+- Armazenamento dos dados no Supabase
+- Envio automático de e-mails via Resend
+- Notificação quando o valor FIPE atingir o preço definido
+
+## 🛠️ Tecnologias
+- React
+- JavaScript
+- SASS
+- API da Tabela FIPE
+- Supabase (banco de dados)
+- Resend (envio de e-mails)
+- @react-pdf/renderer (exportação em PDF)
+- html-to-image (exportação como imagem)
