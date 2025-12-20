@@ -15,6 +15,7 @@ import {
 import { Element, Link } from 'react-scroll'
 import { NumericFormat } from 'react-number-format'
 import supabase from '../../supabase-client'
+import Banner from '../../components/Banner/Banner'
 
 const FipeMonitoring = ({ onChange }) => {
   const fipeForm3 = useFipeForm()
@@ -151,7 +152,11 @@ const FipeMonitoring = ({ onChange }) => {
   return (
     <>
       <Link to="monitoring" smooth={true} offset={-80} duration={500}>
-        <div className={styles.banner}></div>
+        <Banner
+          desktopImg="--monitor-hero"
+          mobileImg="--monitor-hero-mobile"
+          alt="Banner Monitoramento"
+        />
       </Link>
 
       <div className="container">

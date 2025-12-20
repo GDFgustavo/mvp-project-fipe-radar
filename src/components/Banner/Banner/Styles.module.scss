@@ -1,0 +1,15 @@
+.banner {
+  width: 100%;
+  aspect-ratio: 16 / 4;
+  background-image: var(--banner-desktop);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .banner {
+    aspect-ratio: 1 / 1;
+    background-image: var(--banner-mobile);
+  }
+}
