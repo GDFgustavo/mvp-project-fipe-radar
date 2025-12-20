@@ -1,13 +1,3 @@
-.banner {
-  background-image: var(--monitor-hero);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  width: 100%;
-  height: 480px;
-  cursor: pointer;
-}
-
 .content {
   margin-top: 10em;
   background-color: var(--card-color);
@@ -59,8 +49,6 @@
       color: var(--label-color);
     }
   }
-
-
 
   .inputWrapper {
     position: relative;
@@ -169,12 +157,6 @@
 
 
 @media (max-width: 767px) {
-  .banner {
-    background-position: center;
-    background-image: var(--monitor-hero-mobile);
-    height: 432px;
-  }
-
   .content {
   padding: 8px;
 

@@ -13,8 +13,10 @@
   --navbar-border: rgba(0, 0, 0, 0.08);
   --primary: #0049e6;
   --logo-filter: none;
-  --hero: url('./assets/hero-light.png');
-  --hero-mobile: url('./assets/hero-mobile-light.png');
+  --hero: url('./assets/hero.png');
+  --hero-mobile: url('./assets/hero-mobile.png');
+  --monitor-call: url('./assets/monitor-call.png');
+  --monitor-call-mobile: url('./assets/monitor-call-mobile.png');
   --monitor-hero: url('./assets/monitor-hero-light.png');
   --monitor-hero-mobile: url('./assets/monitor-hero-mobile-light.png');
 }
@@ -34,8 +36,6 @@
   --navbar-border: rgba(255, 255, 255, 0.08);
   --primary: #0049e6;
   --logo-filter: invert(1);
-  --hero: url('./assets/hero-dark.png');
-  --hero-mobile: url('./assets/hero-mobile-dark.png');
   --monitor-hero: url('./assets/monitor-hero-dark.png');
   --monitor-hero-mobile: url('./assets/monitor-hero-mobile-dark.png');
 }
