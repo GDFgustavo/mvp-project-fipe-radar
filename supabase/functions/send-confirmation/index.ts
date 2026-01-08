@@ -39,61 +39,113 @@ Deno.serve(async (req) => {
     // Cria URL de confirmação
     const confirmUrl = `https://www.fiperadar.site/confirm?token=${token}`
 
-    const emailHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; }
-            .container { background-color: #ffffff; border-radius: 12px; border: 1px solid #e6e6e6; padding: 32px; max-width: 600px; margin: 40px auto; }
-            .header { text-align: center; margin-bottom: 20px; }
-            .heading { color: #007bff; font-size: 24px; margin: 16px 0; }
-            .content { font-size: 16px; color: #333; line-height: 1.6; }
-            .vehicle-box { background-color: #f5f9ff; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
-            .vehicle-name { margin: 0; font-size: 16px; font-weight: bold; color: #0056b3; }
-            .button { background-color: #007bff; color: #fff; padding: 12px 28px; border-radius: 8px; font-size: 16px; text-decoration: none; font-weight: bold; display: inline-block; }
-            .footer { text-align: center; font-size: 13px; color: #999; margin-top: 32px; }
-            .divider { margin: 32px 0; border-top: 1px solid #e6e6e6; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <img src="https://servidor-estaticos-one-puce.vercel.app/fipe_logo_black.png" alt="FipeRadar" width="48" style="margin: 0 auto 16px;">
-              <h1 class="heading">Confirme seu monitoramento FIPE</h1>
-            </div>
+    const emailHtml = `<!DOCTYPE html>
+<html>
 
-            <div class="content">
-              <p>Olá 👋,</p>
-              <p>Você (ou alguém) solicitou receber monitoramentos de preço da FIPE para o veículo:</p>
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center">
+                <table width="600" bgColor="#fff" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="text-align: center; padding: 32px;">
+                            <img src="https://servidor-estaticos-one-puce.vercel.app/fipe_logo_black.png"
+                                alt="FipeRadar" style="margin: 0 auto 16px; width: 48px;">
+                            <h1 style="color:#000; font-size: 24px; font-family:'Roboto', Arial, sans-serif; ">
+                                Confirme seu monitoramento FIPE
+                            </h1>
+                        </td>
+                    </tr>
 
-              <div class="vehicle-box">
-                <p class="vehicle-name">${record.brand_name || 'Veículo não especificado'}</p>
-              </div>
+                    <tr>
+                        <td height="24" style="font-size:20px; line-height:24px;">&nbsp;</td>
+                    </tr>
 
-              <p>Para confirmar que este e-mail realmente deseja receber as notificações, clique no botão abaixo:</p>
+                    <tr>
+                        <td style="padding: 16px;">
+                            <p
+                                style="font-size: 16px; font-family:'Roboto', Arial, sans-serif; color: #000; line-height: 1.6;">
+                                Olá 👋,</p>
+                            <p
+                                style="font-size: 16px; font-family:'Roboto', Arial, sans-serif; color: #000; line-height: 1.6;">
+                                Você (ou alguém) solicitou
+                                receber monitoramentos de preço da FIPE para o veículo:</p>
+                        </td>
+                    </tr>
 
-              <p>
-                <a href="${confirmUrl}" class="button">Confirmar meu monitoramento</a>
-              </p>
+                    <tr>
+                        <td height="24" style="font-size:20px; line-height:24px;">&nbsp;</td>
+                    </tr>
 
-              <p style="font-size: 14px; color: #777; margin-top: 24px;">
-                Caso você não tenha solicitado este monitoramento, basta ignorar este e-mail.
-                Nenhuma ação será tomada.
-              </p>
-            </div>
+                    <tr>
+                        <td style="background-color: #f3f4f6; border-radius: 8px; padding: 12px 16px;">
+                            <p
+                                style="color:#000; font-size: 16px; font-family:'Roboto', Arial, sans-serif; font-weight: bold;">
+                              ${record.brand_name || 'Marca não especificado'} ${record.model_name || 'Modelo não especificado'}
+                              </p>
+                        </td>
+                    </tr>
 
-            <div class="divider"></div>
+                    <tr>
+                        <td height="24" style="font-size:20px; line-height:24px;">&nbsp;</td>
+                    </tr>
 
-            <div class="footer">
-              <p>© ${new Date().getFullYear()} FipeRadar — Todos os direitos reservados.</p>
-              <p>Este é um e-mail automático, não responda.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `
+                    <tr>
+                        <td style="padding: 16px;">
+                            <p
+                                style="font-size: 16px; font-family:'Roboto', Arial, sans-serif; color: #000; line-height: 1.6;">
+                                Para confirmar que este e-mail
+                                realmente deseja receber as notificações, clique no botão
+                                abaixo:</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="32" style="font-size:20px; line-height:32px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 16px; text-align: center;">
+                            <a href="${confirmUrl}"
+                                style="background-color: #0049e6; color: #fff; padding: 12px 28px; border-radius: 4px; font-size: 16px; font-family:'Roboto', Arial, sans-serif; font-weight: bold; text-decoration: none;">Confirmar
+                                meu monitoramento</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="40" style="font-size:20px; line-height:40px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 16px;">
+                            <p style="font-size: 14px; font-family:'Roboto', Arial, sans-serif; color: #777;">
+                                Caso você não tenha solicitado este monitoramento, basta ignorar este e-mail.
+                                Nenhuma ação será tomada.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="32" style="font-size:20px; line-height:32px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 16px;">
+                            <p
+                                style="text-align: center;  font-size: 13px; font-family:'Roboto', Arial, sans-serif; color: #999;">
+                                © ${new Date().getFullYear()} FipeRadar — Todos os direitos reservados.</p>
+                            <p
+                                style="text-align: center;  font-size: 13px; font-family:'Roboto', Arial, sans-serif; padding: 10px; color: #999;">
+                                Este é um e-mail automático, não responda.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>`
 
     // Envia o e-mail
     await resend.emails.send({
